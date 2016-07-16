@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import <Social/Social.h>
 
 
 @interface ViewController ()
@@ -49,11 +50,30 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+//Do this only!!
 - (IBAction)tweetButtonTapped:(id)sender {
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *tweetfromApp = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+//        [tweetSheet setInitialText:@"This is our first Tweet from our first Ios app, yaya!!!"];
+        [tweetfromApp addURL:[NSURL URLWithString:@"https://scontent-lga3-1.cdninstagram.com/t51.2885-15/s480x480/e35/13658589_1113138265427131_321430007_n.jpg?ig_cache_key=MTI5MjMwODExNDA2MTc5MzA2Mw%3D%3D.2"]];
+        [self presentViewController:tweetfromApp animated:YES completion:nil];
+    }
+    
 }
 - (IBAction)pinButtonTapped:(id)sender {
 }
+
+//Do this only!!
 - (IBAction)facebookButtonTapped:(id)sender {
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+//        [controller addImage:[UIImage imageNamed:@"socialsharing-facebook-image.jpg"]]
+         [controller addURL:[NSURL URLWithString:@"https://scontent-lga3-1.cdninstagram.com/t51.2885-15/s480x480/e35/13658589_1113138265427131_321430007_n.jpg?ig_cache_key=MTI5MjMwODExNDA2MTc5MzA2Mw%3D%3D.2"]];
+//        [controller setInitialText:@"This is our first facebook Post from our Ios app, yaya!!!"];
+        [self presentViewController:controller animated:YES completion:Nil];
+    }
 }
 
 //IMAGES USED:
